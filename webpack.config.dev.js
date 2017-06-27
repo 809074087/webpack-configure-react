@@ -6,15 +6,15 @@ var ExtractTextPlugin = require("extract-text-webpack-plugin"); //css单独打�
 //定义了一些文件夹的路径
 var ROOT_PATH = path.resolve(__dirname);
 // var APP_PATH = path.resolve(ROOT_PATH, 'app/js');
-var APP_PATH = path.resolve(ROOT_PATH, 'matchManage/js');
+var APP_PATH = path.resolve(ROOT_PATH, 'app');
 var BUILD_PATH = path.resolve(ROOT_PATH, 'build');
 //Template的文件夹路径
-var TEM_PATH = path.resolve(ROOT_PATH, 'templates');
+var TEM_PATH = path.resolve(ROOT_PATH, 'app/templates');
 module.exports = {
   //项目的文件夹 可以直接用文件夹名称 默认会找index.js 也可以确定是哪个文件名字
   entry: {
   	//三个入口文件，app, mobile和 vendors
-    index: path.resolve(APP_PATH, 'matchManage.js')
+    index: path.resolve(APP_PATH, 'index.js')
     // mobile: path.resolve(APP_PATH, 'mobile.js'),
     //添加要打包在commons里面的库
     // vendors: ['jquery', 'react', 'react-dom' ]
@@ -41,9 +41,8 @@ module.exports = {
     colors: true,
     port: 8888,
     proxy: {
-      '/zhjrsl/*': {
-          target: 'http://test3.gtjadev.com:8018',
-          // target: 'http://localhost:8080',
+      '/api/*': {
+          target: 'http://localhost:8080',
           changeOrigin: true,
           secure: false
       }
@@ -106,7 +105,7 @@ module.exports = {
     //创建了两个HtmlWebpackPlugin的实例，生成两个页面
     new HtmlwebpackPlugin({
       title: 'demo',
-      template: path.resolve(TEM_PATH, 'dist.html'),
+      template: path.resolve(TEM_PATH, 'index.html'),
       filename: 'index.html',
       //chunks这个参数告诉插件要引用entry里面的哪几个入口
       chunks: ['index'],
