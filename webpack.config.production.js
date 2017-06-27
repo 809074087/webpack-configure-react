@@ -7,10 +7,10 @@ var OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin'); // 
 //定义了一些文件夹的路径
 var ROOT_PATH = path.resolve(__dirname);
 // var APP_PATH = path.resolve(ROOT_PATH, 'app/js');
-var APP_PATH = path.resolve(ROOT_PATH, 'matchManage/js');
+var APP_PATH = path.resolve(ROOT_PATH, 'app');
 var BUILD_PATH = path.resolve(ROOT_PATH, 'dist');
 //Template的文件夹路径
-var TEM_PATH = path.resolve(ROOT_PATH, 'templates');
+var TEM_PATH = path.resolve(ROOT_PATH, 'app/templates');
 
 
 
@@ -18,7 +18,7 @@ var config = module.exports = {
   //项目的文件夹 可以直接用文件夹名称 默认会找index.js 也可以确定是哪个文件名字
   entry: {
   	//三个入口文件，app, mobile和 vendors
-    matchManage: path.resolve(APP_PATH, 'matchManage.js')
+    index: path.resolve(APP_PATH, 'index.js')
     // mobile: path.resolve(APP_PATH, 'mobile.js'),
     //添加要打包在commons里面的库
     // vendors: ['jquery', 'react', 'react-dom' ]
@@ -136,8 +136,8 @@ var config = module.exports = {
     new HtmlwebpackPlugin({
       // title: '奖品管理',
       template: path.resolve(TEM_PATH, 'index.html'),
-      filename: 'matchManage.html',
-      chunks: ['matchManage'],
+      filename: 'app.html',
+      chunks: ['index'],
       inject: 'body'
     }),
     // new HtmlwebpackPlugin({
